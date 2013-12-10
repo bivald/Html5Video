@@ -35,10 +35,16 @@ public class Html5Video extends CordovaPlugin {
 				status = true;
 			}
 		} else if (action.equals(ACTION_PLAY)) {
-			String videoId = args.getString(0);
-			if (videoId != null) {
-				this.webView.loadUrl("javascript:window.plugins.html5Video._play(" + videoId + ")");
-				status = true;
+			final String videoId = args.getString(0);
+				if (videoId != null) {
+					status = true;
+					cordova.getActivity().runOnUiThread(new Runnable() {
+        		   			public void run() {
+                				   webView.loadUrl("javascript:window.plugins.html5Video._play(" + videoId + ")");
+                			 	   LOG.d("Html5Video", "Playing video with id: " + videoId);
+        			 		}
+            				});
+	            		
 				
 				LOG.d("Html5Video", "Playing video with id: " + videoId);
 			}
