@@ -52,6 +52,7 @@ Html5Video.prototype._play = function(video) {
 	//video.setAttribute('poster', video.getAttribute('poster'));		
 
 	video.addEventListener("timeupdate", function() {
+		console.log(arguments)
 		if (video.duration > 0 
 			&& Math.round(video.duration) - Math.round(video.currentTime) == 0) {
 			
